@@ -72,6 +72,7 @@ public class MultiDataSourceSqlExecutor {
                 return ExecutionResult.success(dbName, "执行成功，影响行数：" + rows, null);
             }
         } catch (Exception e) {
+            String a = e.getCause().getMessage();
             return ExecutionResult.failure(dbName, e.getMessage());
         }
     }

@@ -1,15 +1,22 @@
 package com.example.demo.execute;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
+@Slf4j
 @RestController
 @RequestMapping("/exceute")
 public class ExecutorController {
 
+    private static final Logger log = LoggerFactory.getLogger(ExecutorController.class);
     @Autowired
     private MultiDataSourceSqlExecutor sqlExecutor;
 
@@ -37,7 +44,10 @@ public class ExecutorController {
                 "  primary key (dept_id)\n" +
                 ") engine=innodb auto_increment=200 comment = '部门表';";
 
-        sqlExecutor.executeOnAllDataSources(sql);
+       Map<String,Object> map = sqlExecutor.executeOnAllDataSources(sql);
+
+       log.info(map.toString());
+
     }
 
 
