@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wpy</groupId>
-    <artifactId>demo1</artifactId>
+    <artifactId>SQLExecutor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SQLExecutor</name>
     <description>SQLExecutor</description>
