@@ -1,7 +1,7 @@
 package com.example.demo.execute.controller;
 
 import com.example.demo.execute.vo.ExecutorVO;
-import com.example.demo.execute.service.MultiDataSourceSqlExecutor;
+import com.example.demo.execute.service.MultiDataSourceSqlExecutorService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ public class ExecutorController {
 
     private static final Logger log = LoggerFactory.getLogger(ExecutorController.class);
     @Autowired
-    private MultiDataSourceSqlExecutor sqlExecutor;
+    private MultiDataSourceSqlExecutorService sqlExecutor;
 
 
     @PostMapping("/executeSql")

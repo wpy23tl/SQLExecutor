@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @Service
-public class MultiDataSourceSqlExecutor {
+public class MultiDataSourceSqlExecutorService {
 
     @Autowired
     @Qualifier("jdbcTemplate1")
