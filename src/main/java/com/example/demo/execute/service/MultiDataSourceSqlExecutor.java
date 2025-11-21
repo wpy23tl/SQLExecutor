@@ -1,8 +1,7 @@
-package com.example.demo.execute;
+package com.example.demo.execute.service;
 
+import com.example.demo.execute.vo.ExecutionResult;
 import io.micrometer.common.util.StringUtils;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -141,26 +140,3 @@ public class MultiDataSourceSqlExecutor {
 
 
 }
-
-@Data
-@AllArgsConstructor
-class ExecutionResult {
-    private String dbName;
-    private boolean success;
-    private String message;
-    private Object data;
-
-    public static ExecutionResult success(String dbName, String msg, Object data) {
-        return new ExecutionResult(dbName, true, msg, data);
-    }
-
-    public static ExecutionResult failure(String dbName, String msg) {
-        return new ExecutionResult(dbName, false, msg, null);
-    }
-
-
-
-
-
-}
-
