@@ -34,7 +34,7 @@ public class MultiDataSourceSqlExecutorService {
     /**
      * 并发执行SQL到所有数据源
      */
-    public Map<String, Object> executeOnAllDataSources(String sql) {
+    public List<ExecutionResult> executeOnAllDataSources(String sql) {
         // 1. SQL校验
         validateSql(sql);
 
@@ -56,7 +56,7 @@ public class MultiDataSourceSqlExecutorService {
                 .collect(Collectors.toList());
 
         // 4. 返回汇总
-        return buildResponse(results);
+        return results;
     }
 
     private ExecutionResult executeSingleDataSource(JdbcTemplate template, String dbName, String sql) {
@@ -64,15 +64,15 @@ public class MultiDataSourceSqlExecutorService {
             if (sql.trim().toUpperCase().startsWith("SELECT")) {
                 // 查询语句
                 List<Map<String, Object>> data = template.queryForList(sql);
-                return ExecutionResult.success(dbName, "查询成功", data);
+                return ExecutionResult.success(dbName, "","查询成功", data);
             } else {
                 // DDL/DML语句
                 int rows = template.update(sql);
-                return ExecutionResult.success(dbName, "执行成功，影响行数：" + rows, null);
+                return ExecutionResult.success(dbName,"", "执行成功，影响行数：" + rows, null);
             }
         } catch (Exception e) {
             String a = e.getCause().getMessage();
-            return ExecutionResult.failure(dbName, e.getMessage());
+            return ExecutionResult.failure(dbName,"", e.getMessage());
         }
     }
 
